@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student CRUD Application</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+     
+</head>
+<body>
+     
+    <div class=" flex-containe">
+        <h1>Student CRUD Application</h1>
+        <form action="/students" method="post">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="class" placeholder="class" required>
+            <input type="number" name="age" placeholder="Age" required>
+            <select name="grade" required>
+                <option value="" disabled selected>Select Grade</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+            </select>
+            <button type="submit">Add Student</button>
+        </form>
+        <ul>
+            <% students.forEach(student => { %>
+                <li>
+                    <span><strong>Name:</strong> <%= student.Name %></span>
+                    <span><strong>class:</strong> <%= student.class %></span>
+                    <span><strong>Age:</strong> <%= student.age %></span>
+                    <span><strong>Grade:</strong> <%= student.grade %></span>
+                    <form action="/students/<%= student._id %>?_method=DELETE" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <form action="/students/<%= student._id %>?_method=update" method="post">
+                        <button type="submit">update</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</body>
+</html>
